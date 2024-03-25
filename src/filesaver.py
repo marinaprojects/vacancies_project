@@ -35,11 +35,13 @@ class JSONSaver(BaseSaver):
             self._save_vacancies_to_file()
 
     def get_vacancies_by_criteria(self, criteria):
-        # реализация на основе критериев
         pass
 
+
     def _save_vacancies_to_file(self):
-        pass
+        file_path = f"data/{self.filename}"
+        with open(file_path, 'w') as file:
+            json.dump(self.vacancies, file)
 
 
 class CSVSaver(BaseSaver, ABC):
@@ -52,7 +54,3 @@ class TXTSaver(BaseSaver, ABC):
 
 class XLSSaver(BaseSaver, ABC):
     pass
-
-# Example usage
-json_saver = JSONSaver("vacancies.json")
-json_saver.delete_vacancy(3)  # Delete vacancy at index 3

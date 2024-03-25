@@ -32,4 +32,5 @@ class Vacancy:
 
 
     def __str__(self):
-        return f"Title: {self.title}\nURL: {self.link}\nSalary: {self.salary_from}\nCompany: {self.company_name}\nDescription: {self.description}\n"
+        return (f"Title: {self.title}\nURL: {self.link}\nSalary: {self.salary_from}\nCompany:"
+                f" {self.company_name}\nDescription: {self.description}\n")
