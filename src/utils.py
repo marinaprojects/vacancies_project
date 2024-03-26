@@ -37,18 +37,18 @@ def user_interaction(api):
                 continue
             print("Список вакансий:")
             print_vacancies(json_saver.vacancies)
-            vacancy_index = int(
-                input(f"Введите индекс вакансии для удаления (от 0 до {len(json_saver.vacancies) - 1}): "))
-            if 0 <= vacancy_index < len(json_saver.vacancies):
-                del json_saver.vacancies[vacancy_index]
-                json_saver._save_vacancies_to_file()  # Сохранение изменений в файл
-                print("Вакансия удалена из файла.")
-            else:
-                print("Неверный индекс. Пожалуйста, выберите индекс из диапазона.")
-        elif choice == "4":
-            break
-        else:
-            print("Неверный выбор. Пожалуйста, выберите действие из списка.")
+            max_index = len(json_saver.vacancies) - 1
+            vacancy_index = input(f"Введите индекс вакансии для удаления (от 0 до {max_index}): ")
+            try:
+                vacancy_index = int(vacancy_index)
+                if 0 <= vacancy_index <= max_index:
+                    del json_saver.vacancies[vacancy_index]
+                    json_saver._save_vacancies_to_file()
+                    print("Вакансия удалена из файла.")
+                else:
+                    print("Неверный индекс. Пожалуйста, выберите индекс из диапазона.")
+            except ValueError:
+                print("Неверный формат индекса. Пожалуйста, введите целое число.")
 
 
 def print_vacancies(vacancies_list):
