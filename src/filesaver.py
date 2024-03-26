@@ -17,11 +17,13 @@ class BaseSaver(ABC):
 
 
 class JSONSaver(BaseSaver):
+    """ Класс для сохранения вакансий в формате JSON."""
     def __init__(self, filename):
         self.filename = filename
         self.vacancies = []
 
     def add_vacancy(self, vacancy):
+        """Добавляет вакансию в список."""
         self.vacancies.append(vars(vacancy))
         self._save_vacancies_to_file()
         file_path = f"data/{self.filename}"
@@ -30,6 +32,7 @@ class JSONSaver(BaseSaver):
 
 
     def delete_vacancy(self, vacancy_index):
+        """Удаляет вакансию из списка по индексу."""
         if 0 <= vacancy_index < len(self.vacancies):
             del self.vacancies[vacancy_index]
             self._save_vacancies_to_file()
@@ -39,6 +42,7 @@ class JSONSaver(BaseSaver):
 
 
     def _save_vacancies_to_file(self):
+        """ Сохраняет список вакансий в формате JSON в файл."""
         file_path = f"data/{self.filename}"
         with open(file_path, 'w') as file:
             json.dump(self.vacancies, file)
