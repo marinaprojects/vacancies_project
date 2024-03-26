@@ -31,10 +31,18 @@ class JSONSaver(BaseSaver):
             json.dump(self.vacancies, file)
 
 
+    # def delete_vacancy(self, vacancy_index):
+    #     """Удаляет вакансию из списка по индексу."""
+    #     if 0 <= vacancy_index < len(self.vacancies):
+    #         del self.vacancies[vacancy_index]
+    #         self._save_vacancies_to_file()
+
+
     def delete_vacancy(self, vacancy_index):
         """Удаляет вакансию из списка по индексу."""
         if 0 <= vacancy_index < len(self.vacancies):
-            del self.vacancies[vacancy_index]
+            vacancy = self.vacancies[vacancy_index]
+            self.vacancies.remove(vacancy)
             self._save_vacancies_to_file()
 
     def get_vacancies_by_criteria(self, criteria):
